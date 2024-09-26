@@ -1,0 +1,100 @@
+<table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+    <thead class="bg-gray-50 dark:bg-neutral-800">
+      <tr>
+        <th scope="col" class="ps-6 py-3 text-start">
+          <label for="hs-at-with-checkboxes-main" class="flex">
+            <span class="sr-only">#</span>
+          </label>
+        </th>
+
+        <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+          <div class="flex items-center gap-x-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+              Nombre Completo
+            </span>
+          </div>
+        </th>
+
+        <th scope="col" class="px-6 py-3 text-start">
+          <div class="flex items-center gap-x-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+              Email
+            </span>
+          </div>
+        </th>
+
+        <th scope="col" class="px-6 py-3 text-start">
+          <div class="flex items-center gap-x-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+              Dirección
+            </span>
+          </div>
+        </th>
+
+        <th scope="col" class="px-6 py-3 text-start">
+          <div class="flex items-center gap-x-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+              Fecha
+            </span>
+          </div>
+        </th>
+
+        <th scope="col" class="px-6 py-3 text-end"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of listaUsuarios(); track item.id; let i = $index) {
+        <tr>
+          <td class="size-px whitespace-nowrap">
+            <div class="ps-6 py-3">
+              <label for="hs-at-with-checkboxes-12" class="flex">
+                <span class="sr-only">{{i+1}}</span>
+              </label>
+            </div>
+          </td>
+          <td class="size-px whitespace-nowrap">
+            <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+              <div class="flex items-center gap-x-3">
+                <div class="grow">
+                  <a routerLink="/detalle/{{item.id}}">
+                  <span class="block text-sm font-semibold text-blue-800 dark:text-blue-400">{{item.nombre}} {{item.apellido}}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+  
+          <td class="h-px w-72 whitespace-nowrap">
+            <div class="px-6 py-3">
+              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{item.email}}</span>
+            </div>
+          </td>
+          
+          
+          <td class="size-px whitespace-nowrap">
+            <div class="px-6 py-3">
+              <span class="text-sm text-gray-500 dark:text-neutral-500">{{item.direccion}}</span>
+            </div>
+          </td>
+
+          <td class="size-px whitespace-nowrap">
+            <div class="px-6 py-3">
+              <span class="text-sm text-gray-500 dark:text-neutral-500">{{item.createdAt | date: 'dd/MM/yyyy'}}</span>
+            </div>
+          </td>
+  
+          
+          <td class="size-px whitespace-nowrap">
+            <div class="px-6 py-1.5 space-x-3">
+              <a routerLink="/editar/{{item.id}}" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500">
+                Editar
+              </a>
+              <button (click)="borrarUsuario(item.id)" class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-red-500">
+                Borrar
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+</table>
